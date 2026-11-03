@@ -1,31 +1,31 @@
 <script setup>
 import { SOURCE } from '../data/highlights.js';
+import { t, dateFormatter } from '../i18n.js';
+
+const published = new Date(SOURCE.publishedIso);
 </script>
 
 <template>
   <footer id="sources" class="footer">
     <div class="cds--container footer__grid">
       <div>
-        <h2 class="footer__heading">Sources</h2>
+        <h2 class="footer__heading">{{ t('footer.sources') }}</h2>
         <ul class="footer__list">
           <li>
             <a :href="SOURCE.url" target="_blank" rel="noopener">{{ SOURCE.title }}</a>
-            <span class="footer__meta">NASA Ames Research Center, {{ SOURCE.published }}</span>
+            <span class="footer__meta">
+              {{ t('footer.article') }}, {{ dateFormatter.format(published) }}
+            </span>
           </li>
           <li>
             <a href="https://images.nasa.gov" target="_blank" rel="noopener">
               NASA Image and Video Library
             </a>
-            <span class="footer__meta">images-api.nasa.gov, filtered to 2025</span>
+            <span class="footer__meta">{{ t('footer.apiNote') }}</span>
           </li>
         </ul>
       </div>
-      <p class="footer__note">
-        This is an independent project, not an official NASA product. Highlight text is
-        summarized from NASA’s year in review. NASA media is generally not subject to copyright
-        in the United States; credits are shown with each image. Styled with IBM Carbon colors,
-        IBM Plex type, and Carbon layout guidelines.
-      </p>
+      <p class="footer__note">{{ t('footer.note') }}</p>
     </div>
   </footer>
 </template>
@@ -33,8 +33,9 @@ import { SOURCE } from '../data/highlights.js';
 <style scoped>
 .footer {
   padding: var(--spacing-09) 0;
-  background: var(--cds-gray-100);
-  border-top: 1px solid var(--border-subtle);
+  background: var(--ku-slate);
+  color: var(--ku-white);
+  border-top: 4px solid var(--ku-crimson);
 }
 .footer__grid {
   display: grid;
@@ -63,14 +64,18 @@ import { SOURCE } from '../data/highlights.js';
   flex-direction: column;
   gap: var(--spacing-02);
 }
+.footer a {
+  color: var(--ku-white);
+  text-decoration: underline;
+}
 .footer__meta {
   font-size: 0.75rem;
-  color: var(--text-helper);
+  color: #c6c6c6;
 }
 .footer__note {
   max-width: 36rem;
   font-size: 0.75rem;
   line-height: 1.5;
-  color: var(--text-helper);
+  color: #c6c6c6;
 }
 </style>

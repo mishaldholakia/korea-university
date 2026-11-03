@@ -9,15 +9,15 @@
 export const SOURCE = {
   title: '2025 in Review: Highlights from NASA in Silicon Valley',
   url: 'https://www.nasa.gov/centers-and-facilities/ames/2025-in-review-highlights-from-nasa-in-silicon-valley/',
-  published: 'Dec 18, 2025',
+  publishedIso: '2025-12-18T12:00:00Z',
 };
 
 export const CATEGORIES = [
-  { id: 'exploration', label: 'Moon & Mars', tag: 'blue' },
-  { id: 'science', label: 'Space science', tag: 'purple' },
-  { id: 'aeronautics', label: 'Aeronautics', tag: 'teal' },
-  { id: 'biology', label: 'Biology & health', tag: 'green' },
-  { id: 'technology', label: 'Space technology', tag: 'cyan' },
+  { id: 'exploration', label: 'Moon & Mars', tag: 'crimson' },
+  { id: 'science', label: 'Space science', tag: 'blue' },
+  { id: 'aeronautics', label: 'Aeronautics', tag: 'navy' },
+  { id: 'biology', label: 'Biology & health', tag: 'graphite' },
+  { id: 'technology', label: 'Space technology', tag: 'slate' },
 ];
 
 export const highlights = [

@@ -1,51 +1,42 @@
-/* IBM Carbon design tokens (Gray 100 theme) + base styles.
-   Colors: https://carbondesignsystem.com/elements/color/tokens/
+/* IBM Carbon structure (type, spacing, grid) with the Korea University color palette.
    Type:   IBM Plex Sans / IBM Plex Mono
    Grid:   2x grid, 16 columns, 8px mini unit */
 
 :root {
-  /* Core palette */
-  --cds-blue-60: #0f62fe;
-  --cds-blue-50: #4589ff;
-  --cds-blue-40: #78a9ff;
-  --cds-blue-70: #0043ce;
-  --cds-gray-100: #161616;
-  --cds-gray-90: #262626;
-  --cds-gray-80: #393939;
-  --cds-gray-70: #525252;
-  --cds-gray-60: #6f6f6f;
-  --cds-gray-50: #8d8d8d;
-  --cds-gray-30: #c6c6c6;
-  --cds-gray-10: #f4f4f4;
-  --cds-white: #ffffff;
+  /* Korea University palette (sampled from gpa.korea.ac.kr stylesheets) */
+  --ku-crimson: #8b0029;
+  --ku-crimson-hover: #6d0020;
+  --ku-crimson-active: #54001a;
+  --ku-crimson-deep: #730022;
+  --ku-blue: #024d9d;
+  --ku-slate: #293038;
+  --ku-graphite: #555555;
+  --ku-navy: #01336a;
+  --ku-white: #ffffff;
 
-  /* Carbon tag hues (Gray 100 theme) */
-  --tag-blue-bg: #002d9c;
-  --tag-blue-fg: #a6c8ff;
-  --tag-purple-bg: #491d8b;
-  --tag-purple-fg: #d4bbff;
-  --tag-teal-bg: #004144;
-  --tag-teal-fg: #3ddbd9;
-  --tag-green-bg: #044317;
-  --tag-green-fg: #42be65;
-  --tag-cyan-bg: #003a6d;
-  --tag-cyan-fg: #82cfff;
+  /* Category tag colors: solid fills, white text */
+  --tag-blue-bg: var(--ku-blue);
+  --tag-crimson-bg: var(--ku-crimson);
+  --tag-slate-bg: var(--ku-slate);
+  --tag-graphite-bg: var(--ku-graphite);
+  --tag-navy-bg: var(--ku-navy);
 
-  /* Semantic tokens */
-  --background: var(--cds-gray-100);
-  --layer-01: var(--cds-gray-90);
-  --layer-02: var(--cds-gray-80);
-  --layer-hover: #333333;
-  --border-subtle: var(--cds-gray-80);
-  --border-strong: var(--cds-gray-60);
-  --text-primary: var(--cds-gray-10);
-  --text-secondary: var(--cds-gray-30);
-  --text-helper: var(--cds-gray-50);
-  --interactive: var(--cds-blue-60);
-  --link: var(--cds-blue-40);
-  --focus: var(--cds-white);
+  /* Semantic tokens (light theme, like the university site) */
+  --background: #ffffff;
+  --layer-01: #f4f4f4;
+  --layer-02: #ffffff;
+  --layer-hover: #e8e8e8;
+  --border-subtle: #cccccc;
+  --border-strong: #8d8d8d;
+  --text-primary: #161616;
+  --text-secondary: #444444;
+  --text-helper: #6f6f6f;
+  --text-error: #a2191f;
+  --interactive: var(--ku-crimson);
+  --link: var(--ku-crimson);
+  --focus: var(--ku-blue);
 
-  --font-sans: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: 'IBM Plex Sans', 'IBM Plex Sans KR', 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'IBM Plex Mono', Menlo, Courier, monospace;
 
   /* Spacing scale (8px mini unit) */
@@ -164,7 +155,7 @@ input {
   border: 0;
 }
 
-/* Carbon tag */
+/* Carbon-style tag */
 .cds-tag {
   display: inline-flex;
   align-items: center;
@@ -175,33 +166,29 @@ input {
   line-height: 1;
   letter-spacing: 0.32px;
   white-space: nowrap;
+  color: var(--ku-white);
 }
 .cds-tag--blue {
   background: var(--tag-blue-bg);
-  color: var(--tag-blue-fg);
 }
-.cds-tag--purple {
-  background: var(--tag-purple-bg);
-  color: var(--tag-purple-fg);
+.cds-tag--crimson {
+  background: var(--tag-crimson-bg);
 }
-.cds-tag--teal {
-  background: var(--tag-teal-bg);
-  color: var(--tag-teal-fg);
+.cds-tag--slate {
+  background: var(--tag-slate-bg);
 }
-.cds-tag--green {
-  background: var(--tag-green-bg);
-  color: var(--tag-green-fg);
+.cds-tag--graphite {
+  background: var(--tag-graphite-bg);
 }
-.cds-tag--cyan {
-  background: var(--tag-cyan-bg);
-  color: var(--tag-cyan-fg);
+.cds-tag--navy {
+  background: var(--tag-navy-bg);
 }
 .cds-tag--gray {
-  background: var(--layer-02);
-  color: var(--text-secondary);
+  background: #e0e0e0;
+  color: var(--text-primary);
 }
 
-/* Carbon button */
+/* Carbon-style button */
 .cds-btn {
   display: inline-flex;
   align-items: center;
@@ -211,25 +198,26 @@ input {
   padding: 0 var(--spacing-05);
   border: 1px solid transparent;
   background: var(--interactive);
-  color: var(--cds-white);
+  color: var(--ku-white);
   font-size: 0.875rem;
   letter-spacing: 0.16px;
   cursor: pointer;
-  transition: background 110ms;
+  transition: background 110ms, color 110ms;
 }
 .cds-btn:hover {
-  background: #0050e6;
+  background: var(--ku-crimson-hover);
+  color: var(--ku-white);
   text-decoration: none;
 }
 .cds-btn:active {
-  background: #002d9c;
+  background: var(--ku-crimson-active);
 }
 .cds-btn--secondary {
   background: transparent;
-  border-color: var(--cds-white);
-  color: var(--cds-white);
+  border-color: var(--interactive);
+  color: var(--interactive);
 }
 .cds-btn--secondary:hover {
-  background: var(--cds-white);
-  color: var(--cds-gray-100);
+  background: var(--interactive);
+  color: var(--ku-white);
 }

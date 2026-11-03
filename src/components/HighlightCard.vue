@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 import { imageUrl } from '../data/highlights.js';
+import { t } from '../i18n.js';
 
 const props = defineProps({
   item: { type: Object, required: true },
@@ -23,7 +24,7 @@ const image = computed(() => (props.item.imageId ? imageUrl(props.item.imageId) 
         <h3 class="card__title">{{ item.title }}</h3>
         <p class="card__summary">{{ item.summary }}</p>
         <span class="card__more">
-          Read more
+          {{ t('card.more') }}
           <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
             <path d="M18 6 16.57 7.393 24.15 15H4v2h20.15l-7.58 7.573L18 26 28 16z" />
           </svg>
@@ -59,22 +60,22 @@ const image = computed(() => (props.item.imageId ? imageUrl(props.item.imageId) 
   justify-content: center;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: var(--tag-blue-bg);
+  background: var(--tag-crimson-bg);
+}
+.card__media--crimson {
+  background: var(--tag-crimson-bg);
 }
 .card__media--blue {
   background: var(--tag-blue-bg);
 }
-.card__media--purple {
-  background: var(--tag-purple-bg);
+.card__media--navy {
+  background: var(--tag-navy-bg);
 }
-.card__media--teal {
-  background: var(--tag-teal-bg);
+.card__media--graphite {
+  background: var(--tag-graphite-bg);
 }
-.card__media--green {
-  background: var(--tag-green-bg);
-}
-.card__media--cyan {
-  background: var(--tag-cyan-bg);
+.card__media--slate {
+  background: var(--tag-slate-bg);
 }
 .card__media img {
   width: 100%;
@@ -85,7 +86,7 @@ const image = computed(() => (props.item.imageId ? imageUrl(props.item.imageId) 
   font-size: 3rem;
   font-weight: 300;
   line-height: 1;
-  color: var(--cds-white);
+  color: var(--ku-white);
   opacity: 0.9;
 }
 .card__body {

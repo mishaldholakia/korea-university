@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref, watch, nextTick } from 'vue';
 import { imageUrl } from '../data/highlights.js';
+import { t } from '../i18n.js';
 
 const props = defineProps({
   item: { type: Object, default: null },
@@ -38,7 +39,7 @@ function onBackdrop(e) {
     <article v-if="item && category" class="modal__panel">
       <header class="modal__header">
         <span class="cds-tag" :class="`cds-tag--${category.tag}`">{{ category.label }}</span>
-        <button type="button" class="modal__close" aria-label="Close" @click="emit('close')">
+        <button type="button" class="modal__close" :aria-label="t('modal.close')" @click="emit('close')">
           <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
             <path d="M24 9.4 22.6 8 16 14.6 9.4 8 8 9.4 14.6 16 8 22.6 9.4 24l6.6-6.6 6.6 6.6 1.4-1.4-6.6-6.6z" />
           </svg>
@@ -47,7 +48,7 @@ function onBackdrop(e) {
 
       <figure v-if="image" class="modal__figure">
         <img :src="image" :alt="item.imageAlt" />
-        <figcaption>Credit: {{ item.imageCredit }}</figcaption>
+        <figcaption>{{ t('modal.credit') }}: {{ item.imageCredit }}</figcaption>
       </figure>
 
       <div class="modal__content">
@@ -59,7 +60,7 @@ function onBackdrop(e) {
           <span class="modal__factLabel">{{ item.fact.label }}</span>
         </div>
 
-        <ul class="modal__tags" aria-label="Topics">
+        <ul class="modal__tags" :aria-label="t('modal.topics')">
           <li v-for="t in item.tags" :key="t" class="cds-tag cds-tag--gray">{{ t }}</li>
         </ul>
       </div>
@@ -132,7 +133,7 @@ function onBackdrop(e) {
   gap: var(--spacing-02);
   margin-top: var(--spacing-06);
   padding: var(--spacing-05);
-  border-left: 3px solid var(--cds-blue-50);
+  border-left: 3px solid var(--ku-crimson);
   background: var(--layer-02);
 }
 .modal__factValue {

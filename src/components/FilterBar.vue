@@ -1,4 +1,6 @@
 <script setup>
+import { t } from '../i18n.js';
+
 defineProps({
   categories: { type: Array, required: true },
   active: { type: String, required: true },
@@ -10,7 +12,7 @@ defineEmits(['update:active', 'update:query']);
 
 <template>
   <div class="filters">
-    <div class="filters__tabs" role="group" aria-label="Filter by category">
+    <div class="filters__tabs" role="group" :aria-label="t('filter.group')">
       <button
         type="button"
         class="tab"
@@ -18,7 +20,7 @@ defineEmits(['update:active', 'update:query']);
         :class="{ 'tab--active': active === 'all' }"
         @click="$emit('update:active', 'all')"
       >
-        All
+        {{ t('filter.all') }}
       </button>
       <button
         v-for="c in categories"
@@ -34,20 +36,20 @@ defineEmits(['update:active', 'update:query']);
     </div>
 
     <div class="search">
-      <label class="sr-only" for="highlight-search">Search highlights</label>
+      <label class="sr-only" for="highlight-search">{{ t('filter.search') }}</label>
       <svg class="search__icon" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
         <path d="m29 27.586-7.552-7.552a11.018 11.018 0 1 0-1.414 1.414L27.586 29ZM4 13a9 9 0 1 1 9 9 9.01 9.01 0 0 1-9-9Z" />
       </svg>
       <input
         id="highlight-search"
         type="search"
-        placeholder="Search missions, tools, topics"
+        :placeholder="t('filter.placeholder')"
         :value="query"
         @input="$emit('update:query', $event.target.value)"
       />
     </div>
     <p class="filters__count" aria-live="polite">
-      {{ resultCount }} {{ resultCount === 1 ? 'result' : 'results' }}
+      {{ resultCount }} {{ resultCount === 1 ? t('filter.one') : t('filter.many') }}
     </p>
   </div>
 </template>
@@ -81,7 +83,7 @@ defineEmits(['update:active', 'update:query']);
   color: var(--text-primary);
 }
 .tab--active {
-  border-bottom-color: var(--cds-blue-50);
+  border-bottom-color: var(--ku-crimson);
   color: var(--text-primary);
   background: var(--layer-02);
 }

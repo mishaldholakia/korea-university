@@ -1,5 +1,6 @@
 <script setup>
 import { SOURCE } from '../data/highlights.js';
+import { t } from '../i18n.js';
 
 defineProps({
   total: { type: Number, required: true },
@@ -11,30 +12,29 @@ defineProps({
   <section id="top" class="hero" aria-labelledby="hero-title">
     <div class="cds--container hero__grid">
       <div class="hero__copy">
-        <p class="cds--eyebrow">Year in review</p>
+        <p class="cds--eyebrow">{{ t('hero.eyebrow') }}</p>
         <h1 id="hero-title" class="hero__title">
-          Discoveries from NASA<span class="hero__year">2025</span>
+          {{ t('hero.title') }}<span class="hero__year">2025</span>
         </h1>
         <p class="hero__lead">
-          From a gum-like material inside asteroid Bennu to siderite on Mars, explore the
-          science, technology, and exploration milestones NASA highlighted this year.
+          {{ t('hero.lead') }}
         </p>
         <div class="hero__actions">
           <a class="cds-btn" href="#highlights">
-            Explore highlights
+            {{ t('hero.explore') }}
             <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
               <path d="M16 22 6 12l1.4-1.4L16 19.2l8.6-8.6L26 12z" />
             </svg>
           </a>
           <a class="cds-btn cds-btn--secondary" :href="SOURCE.url" target="_blank" rel="noopener">
-            Read the NASA article
+            {{ t('hero.article') }}
           </a>
         </div>
       </div>
 
-      <dl class="hero__stats" aria-label="Summary">
+      <dl class="hero__stats" :aria-label="t('hero.summary')">
         <div class="stat stat--primary">
-          <dt>Highlights</dt>
+          <dt>{{ t('hero.total') }}</dt>
           <dd>{{ total }}</dd>
         </div>
         <div v-for="c in categories" :key="c.id" class="stat">
@@ -48,10 +48,8 @@ defineProps({
 
 <style scoped>
 .hero {
-  background:
-    linear-gradient(180deg, rgba(15, 98, 254, 0.18) 0%, rgba(22, 22, 22, 0) 70%),
-    var(--cds-gray-100);
-  border-bottom: 1px solid var(--border-subtle);
+  background: linear-gradient(135deg, var(--ku-crimson) 0%, var(--ku-crimson-active) 100%);
+  color: var(--ku-white);
 }
 .hero__grid {
   display: grid;
@@ -65,6 +63,9 @@ defineProps({
     align-items: end;
   }
 }
+.hero .cds--eyebrow {
+  color: rgba(255, 255, 255, 0.8);
+}
 .hero__title {
   margin-top: var(--spacing-05);
   font-size: clamp(2.5rem, 6vw, 4.75rem);
@@ -74,7 +75,7 @@ defineProps({
 }
 .hero__year {
   display: block;
-  color: var(--cds-blue-40);
+  color: var(--ku-white);
   font-weight: 600;
 }
 .hero__lead {
@@ -83,7 +84,7 @@ defineProps({
   font-size: 1.25rem;
   font-weight: 300;
   line-height: 1.4;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.9);
 }
 .hero__actions {
   display: flex;
@@ -93,6 +94,20 @@ defineProps({
 }
 .hero__actions .cds-btn {
   min-width: 14rem;
+  background: var(--ku-white);
+  color: var(--ku-crimson);
+}
+.hero__actions .cds-btn:hover {
+  background: #f4f4f4;
+}
+.hero__actions .cds-btn--secondary {
+  background: transparent;
+  border-color: var(--ku-white);
+  color: var(--ku-white);
+}
+.hero__actions .cds-btn--secondary:hover {
+  background: var(--ku-white);
+  color: var(--ku-crimson);
 }
 
 .hero__stats {
@@ -100,8 +115,8 @@ defineProps({
   grid-template-columns: repeat(2, 1fr);
   gap: 1px;
   margin: 0;
-  background: var(--border-subtle);
-  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
 }
 .stat {
   display: flex;
@@ -111,17 +126,19 @@ defineProps({
   min-height: 7rem;
   padding: var(--spacing-05);
   background: var(--layer-01);
+  color: var(--text-primary);
 }
 .stat--primary {
   grid-column: 1 / -1;
-  background: var(--interactive);
+  background: var(--ku-crimson-deep);
 }
 .stat dt {
   font-size: 0.875rem;
   color: var(--text-secondary);
 }
-.stat--primary dt {
-  color: var(--cds-white);
+.stat--primary dt,
+.stat--primary dd {
+  color: var(--ku-white);
 }
 .stat dd {
   margin: 0;
